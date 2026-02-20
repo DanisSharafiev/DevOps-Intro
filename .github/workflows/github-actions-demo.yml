@@ -3,6 +3,27 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: 
   push:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+      debug_enabled:
+        description: 'Enable debug logging'
+        required: false
+        default: false
+        type: boolean
+      test_suite:
+        description: 'Test suite to run'
+        required: false
+        default: 'all'
+        type: string
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
