@@ -4,25 +4,28 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy to'
+      logLevel:
+        description: 'Log level'
         required: true
-        default: 'staging'
+        default: 'warning'
         type: choice
         options:
-          - development
-          - staging
-          - production
-      debug_enabled:
-        description: 'Enable debug logging'
-        required: false
-        default: false
+          - info
+          - warning
+          - debug
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true
         type: boolean
-      test_suite:
-        description: 'Test suite to run'
-        required: false
-        default: 'all'
+      tags:
+        description: 'Test scenario tags'
+        required: true
         type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
 
 jobs:
   Explore-GitHub-Actions:
